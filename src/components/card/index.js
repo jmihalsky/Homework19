@@ -1,12 +1,11 @@
 import React from "react";
 import "./style.css";
 
-function ImageCard(props) {
-    return (
-        <div className="card">
-            <img id={props.id} alt={props.name} src={props.image} />
-        </div>
-    );
-}
+
+const ImageCard = props => (
+    <div className="card" onClick = {() => {props.game_logic(props.id); props.shuffle(props.id);}}>
+            <img className="cardpics" id={props.id} alt={props.name} src={props.image} />
+    </div>
+);
 
 export default ImageCard;
