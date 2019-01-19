@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import Jumbotron from "../src/components/jumbotron";
 import './App.css';
 import friends from "./friends.json";
-import ImageCard from "./components/card"
+import ImageCard from "./components/card";
+import Wrapper from "./components/wrapper";
 
 class App extends Component {
 
   state = {
     friends,
     selected: [],
-    score: 0
+    score: 0,
+    topscore: 0
   };
 
   shuffle = id => {
@@ -32,10 +34,21 @@ class App extends Component {
     }
     else
     {
-      this.setState({
-        score: 0,
-        selected: []
-      });
+      if (this.state.topscore < this.state.score)
+      {
+        this.setState({
+          topscore: this.state.score,
+          score: 0,
+          selected: []
+        });
+      }
+      else
+      {
+        this.setState({
+          score: 0,
+          selected: []
+        });
+      }
     }
   }
 
@@ -44,7 +57,9 @@ class App extends Component {
       <div className="container-fluid">
       <Jumbotron
         score={this.state.score}
+        topscore={this.state.topscore}
       />
+      <Wrapper>
       {this.state.friends.map((friends,i) => (
         <ImageCard
         id={friends.id}
@@ -55,6 +70,7 @@ class App extends Component {
         game_logic={this.game_logic}
         />
       ))}
+      </Wrapper>
       </div>
     );
   }

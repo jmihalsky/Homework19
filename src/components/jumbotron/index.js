@@ -6,7 +6,8 @@ const Jumbotron = props => (
         <div className="jumbotron jombotron-fluid">
             <h1>React Clicky Game</h1>
             <div id="score">
-                <p>Score: {props.score}</p>
+                <h4>Score: {props.score}</h4>
+                <h4>Top Score: {props.topscore}</h4>
             </div>
         </div>
     </div>
